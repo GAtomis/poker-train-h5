@@ -44,19 +44,10 @@ import { computed } from 'vue';
     deck: {
       type: Array,
       default: () => [],
-    },
-    usedCards: {
-      type: Array,
-      default: () => [],
-    },
+    }
   });
   const cards= computed(() => {
-    return props.deck.filter((item) =>{
-      return !props.usedCards.some((usedCard) => {
-        return usedCard.rank === item.rank && usedCard.suit === item.suit;
-      });
-
-    } );
+    return props.deck.filter((item) => item.suit === currentSuit.value).sort((a, b) => a.rank - b.rank);
   });
   
 

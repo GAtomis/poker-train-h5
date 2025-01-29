@@ -30,4 +30,12 @@ export class Deck {
     getTotal() {
         return this.cards.length;
     }
+
+    removeCards(cardsToRemove) {
+        this.cards = this.cards.filter(card => 
+            !cardsToRemove.some(removeCard => 
+                removeCard.suit === card.suit && removeCard.rank === card.rank
+            )
+        );
+    }
 }

@@ -10,7 +10,7 @@ export class PokerTable {
     this.pot = 0;
     this.currentRound = GAME_ROUNDS.PREFLOP;
     this.button = 0;
-    this.setSeat(maxPlayers-1)
+    this.setSeat(maxPlayers)
   }
 
   setSeat(num) {   
@@ -73,6 +73,13 @@ export class PokerTable {
   }
   getAllSeatPlayerHandCards(){
     return this.seats.map(seat=>seat.player?seat.player.getHand():[]).filter(cards=>cards.length>0).flat()     
+  }
+  correctDecks() {
+    // 获取所有玩家的手牌
+    const allHandCards = this.getAllSeatPlayerHandCards();
+    this.deck.reset()
+    // 移除牌堆中对应的牌
+    this.deck.removeCards(allHandCards);
   }
   progressRound() {
     const rounds = Object.values(GAME_ROUNDS);

@@ -54,6 +54,7 @@ import PokerCard from './PokerCard.vue';
     &__info {
       display: flex;
       gap: 1rem;
+      color: #fff;
     }
 
     &__name {
